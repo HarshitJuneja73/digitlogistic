@@ -195,18 +195,15 @@ def predictOneVsAll(all_theta, X):
 
     # You need to return the following variables correctly
     p = np.zeros(m)
-    p2 = np.zeros(m)
     # Add ones to the X data matrix
     X = np.concatenate([np.ones((m, 1)), X], axis=1)
 
     # ====================== YOUR CODE HERE ======================
-    predo = sigmoid(np.dot(all_theta, X.T))
-    for i in range(m):
-        p[i] = np.argmax(predo[:, i])
-    p2 = np.argmax(np.dot(all_theta, X.T), axis=1)
+    predo = sigmoid(np.dot(all_theta, X.T)) #not used, since sigmoid is an increasing function
+    p2 = np.argmax(np.dot(all_theta, X.T), axis=0)
 
     # ============================================================
-    return p
+    return p2
 
 
 pred = predictOneVsAll(all_theta, X)
